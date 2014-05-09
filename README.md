@@ -1,85 +1,85 @@
-# Fakturownia API
+# InvoiceOcean API
 
 
-Opis jak zintegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
+Description on how to integrate own apllication or service with <http://invoiceocean.com/> system
 
 
 
-Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
+Thanks to API you can issue invoices/bills/receipts from other systems and manage these documents, as well as clients and products
 
-## Spis treści
+## Table of contents
 + [API Token](#token)  
-+ [Faktury - przykłady wywołania](#examples)  
-	+ Pobranie listy faktur z aktualnego miesiąca
-	+ Faktury danego klienta
-	+ Pobranie faktury po ID
-	+ Pobranie PDF-a
-	+ Wysłanie faktury E-MAILEM do klienta
-	+ Dodanie nowej faktury
-	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
-	+ Aktualizacja faktury
-+ [Link do podglądu faktury i pobieranie do PDF](#view_url)  
-+ [Przykłady użycia  - zakup szkolenia](#use_case1)  
-+ [Faktury - specyfikacja](#invoices)
-+ [Klienci](#clients)
-+ [Produkty](#products)
-+ [Przykłady w PHP i Ruby](#codes)  
++ [Invoices - examples of calling](#examples)  
+	+ Downloading a list of invoices from current month
+	+ Specific client's invoices
+	+ Downloading invoices by ID
+	+ Downloading as PDF
+	+ Sending invoices by email to a client
+	+ Adding a new invoice
+	+ Adding a new invoice (by client, product, seller ID)
+	+ Invoice update
++ [Link to invoice preview and PDF download](#view_url)  
++ [Examples of use - purchase of training](#use_case1)  
++ [Invoices - specification](#invoices)
++ [Clients](#clients)
++ [Products](#products)
++ [Examples in PHP and Ruby](#codes)  
 
 
 <a name="token"/>
 ##API token
 
-`API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
+`API_TOKEN` token has to be downloaded from application settings ("Settings -> Account settings -> Integration -> API Authorization Code")
 
 <a name="examples"/>
-##Przykłady wywołania
+##Examples of calling
 
-Pobranie listy faktur z aktualnego miesiąca
+Downloading a list of invoices from current month
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN
+curl https://yourdomain.invoiceocean.com/invoices.json?period=this_month&api_token=API_TOKEN
 ```
 
-<b>UWAGA</b>: do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
+<b>NOTE</b>: additional parameters can be forwarded to calls, e.g. `page=`, `period=` etc.
 
-Faktury danego klienta
+Specific client's invoices
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
+curl https://yourdomain.invoiceocean.com/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
-Pobranie faktury po ID
+Downloading invoices by ID
 
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
+curl https://yourdomain.invoiceocean.com/invoices/100.json?api_token=API_TOKEN
 ```
 
-Pobranie PDF-a
+Downloading as PDF
 
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
+curl https://yourdomain.invoiceocean.com/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-Wysłanie faktury e-mailem do klienta
+Sending invoices by email to a client
 
 
 ```shell
-curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_by_email.json?api_token=API_TOKEN
+curl -X POST https://yourdomain.invoiceocean.com/invoices/100/send_by_email.json?api_token=API_TOKEN
 ```
 
-inne opcje PDF:
-* print_option=original - Oryginał
-* print_option=copy - Kopia
-* print_option=original_and_copy - Oryginał i kopia
-* print_option=duplicate Duplikat
+Other PDF options:
+* print_option=original - Original
+* print_option=copy - Copy
+* print_option=original_and_copy - Original and copy
+* print_option=duplicate Duplicate
 
 
-Dodanie nowej faktury
+Adding a new invoice
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices.json 
   	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
@@ -102,11 +102,11 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json
 	}'
 ```
 
-Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych.
-Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
+Adding a new invoice - the minimal version (only fields required), when we have product, buyer and seller ID we do not need to provide full details.
+VAT Invoice with current date and 5 day due date will be issued.
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -120,69 +120,69 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
 	    }}'
 ```	   
 
-Aktualizacja faktury
+Invoice update
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json 
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json 
 	-X PUT 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
 		"api_token": "API_TOKEN",
 		"invoice": {
-			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
+			"buyer_name": "New client name Ltd."
 		}
 	}'
 ```
 
 <a name="view_url"/>
-##Link do podglądu faktury i pobieranie do PDF
+##Link to invoice preview and PDF download
 
-Po pobraniu danych faktury np. przez:
+After downloading invoice data, e.g. by:
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices/100.json?api_token=API_TOKEN
 ```
 
-API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podglądu faktury oraz do pobrania PDF-a z wygenrowaną fakturą.
-Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności logowania - czyli możemy np. te linki przesłać klientowi, który otrzyma dostęp do faktury i PDF-a.
+API gives us `token` field, on which basis we may receive invoice preview links 
+Such links allow you to refer to the selected invoice without having to log in - you can, for instance, send these links to the customer, who will have access to invoices and PDF.
 
-Lini te są postaci: 
+Links are in the form: 
 
-podgląd: `http://twojaDomena.fakturownia.pl/invoice/{{token}}` 
-pdf: `http://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
+preview: `http://yourdomain.invoiceocean.com/invoice/{{token}}` 
+pdf: `http://yourdomain.invoiceocean.com/invoice/{{token}}.pdf`
 
-Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `http://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
+E.g. for token equal: `HBO3Npx2OzSW79RQL7XV2` public PDF will be at `http://yourdomain.invoiceocean.com/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
 <a name="use_case1"/>
-##Przykłady użycia w PHP - zakup szkolenia
+##Examples of using PHP - purchase of training
 
 `TODO` 
 
-Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła ją klientowi i po opłaceniu wysyła do klienta bilet na szkolenie
+Flow Portal Example which generates a proforma invoice for the client, sends it to the client and after receiving payment, sends the training ticket to the client
 
-* Klient wypełnia dane w Portalu
-* Portal wywołuje API z fakturownia.pl i tworzy fakturę
-* Portal pobiera wysyła Klientowi fakturę Proforma w PDF wraz z linkiem do płatności
-* Klient opłaca fakturę Proforma (np. na PayPal lub PayU.pl)
-* Fakturownia.pl otrzymuje informację, że płatność została wykonana, tworzy Fakturę VAT i wysyła ją Klientowi oraz wywołuje API Portalu
-* Po otrzymaniu informacji o płatności (przez API) Portal wysyła Klientowi bilet na Szkolenie
+* Client fills in details in the Portal
+* The Portal calls API from invoiceocean.com and generates an invoice
+* The Portal sends a Proforma PDF invoice to the Client along with a payment link
+* Client makes a payment for the Proforma invoice (e.g. using PayPal)
+* InvoiceOcean.com receives information that the payment has been made, generates VAT invoice and sends it to the client and calls Portal API
+* After receiving information regarding payment (by API) Portal sends the training ticket to the Client
 
 
 <a name="invoices"/>
-##Faktury
+##Invoices
 
 
-* `GET /invoices/1.json` pobranie faktury
-* `POST /invoices.json` dodanie nowej faktury
-* `PUT /invoices/1.json` aktualizacja faktury
-* `DELETE /invoices/1.json` skasowanie faktury
+* `GET /invoices/1.json` downloading invoice
+* `POST /invoices.json` adding a new invoice
+* `PUT /invoices/1.json` updating invoice
+* `DELETE /invoices/1.json` deleting invoice
 
 
-Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności. Pole department_id określa firmę (lub dział) który wystawia fakturę (można go uzyskać klikając na firmę w menu Ustawienia > Dane firmy)
+Example - adding a new invoice - the minimal version (only fields required), when we have product, buyer and seller ID we do not need to provide full details. Field department_id determines the company (or department) which issues the invoice (it can be obtained by clicking on the company in Settings> Data Company)
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json 
     -H 'Accept: application/json'  
     -H 'Content-Type: application/json'  
     -d '{"api_token": "API_TOKEN",
@@ -196,157 +196,160 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
         }}'
 ```
  
-Pola faktury
+Invoice fields
 
 ```shell
-"number" : "13/2012" - number faktury (jeśli nie będzie podany wygeneruje się automatyczie)
-"kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
-"income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
-"issue_date" : "2013-01-16" - data wystawienia 
-"place" : "Warszawa" - miejsce wystawienia
-"sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
-"category_id" : "" - id kategorii
-"department_id" : "1" - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL)
-"seller_name" : "Radgost Sp. z o.o." - sprzedawca
-"seller_tax_no" : "525-244-57-67" - nip sprzedawcy
-"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
+"number" : "13/2012" - invoice number (if not entered, it will be automatically generated)
+"kind" : "vat" - invoice kind (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
+"income" : "1" - income invoice (1) or cost invoice (0)
+"issue_date" : "2013-01-16" - date of issue 
+"place" : "Warszawa" - place of issue
+"sell_date" : "2013-01-16" - date of sale (it can be date or month in the YYYY-MM format)
+"category_id" : "" - category id
+"department_id" : "1" - department id (in Settings > Company / department, click on company / department and department ID will be shown in the URL)
+"seller_name" : "Radgost Sp. z o.o." - seller
+"seller_tax_no" : "525-244-57-67" - seller tax id
+"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - seller bank account
 "seller_bank" : "BRE Bank", 
 "seller_post_code" : "02-548", 
-"seller_city" : "Warszawa", 
-"seller_street" : "ul. Olesińska 21", 
+"seller_city" : "Warsaw", 
+"seller_street" : "21 Olesińska St.", 
 "seller_country" : "", 
 "seller_email" : "platnosci@radgost123.com", 
 "seller_www" : "", 
 "seller_fax" : "", 
 "seller_phone" : "", 
-"client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
-"buyer_name" : "Nazwa klienta" - kupujący
+"client_id" : "-1" - buyer id (if -1 then client will be created in the system)
+"buyer_name" : "Client name - buyer
 "buyer_tax_no" : "525-244-57-67", 
 "disable_tax_no_validation" : "", 
 "buyer_post_code" : "30-314", 
-"buyer_city" : "Warszawa", 
+"buyer_city" : "Warsaw", 
 "buyer_street" : "Nowa 44", 
 "buyer_country" : "", 
 "buyer_note" : "", 
 "buyer_email" : "", 
-"additional_info" : "0" - czy wyświetlać dodatkowe pole na pozycjach faktury
-"additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
-"show_discount" : "0" - czy rabat
+"additional_info" : "0" - whether to display additional field in invoice position
+"additional_info_desc" : "PKWiU" - name of the additional column in invoice positions
+"show_discount" : "0" - whether show discount or not
 "payment_type" : "transfer", 
-"payment_to_kind" : termin płatności. gdy jest tu "other_date", wtedy można określić konkretną datę w polu "payment_to", jeśli jest tu liczba np. 5 to wtedy mamy 5 dniowy okres płatności
+"payment_to_kind" : due date. if it is "other_date", then you may define a specific date in "payment_to" field, if it is, for example, numer 5 then you have a 5 day payment period
 "payment_to" : "2013-01-16", 
 "status" : "issued", 
 "paid" : "0,00", 
-"oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
+"oid" : "zamowienie10021", - order number (e.g. from external ordering system)
 "warehouse_id" : "1090", 
-"seller_person" : "Imie Nazwisko", 
-"buyer_first_name" : "Imie", 
-"buyer_last_name" : "Nazwisko", 
+"seller_person" : "Forename Surname", 
+"buyer_first_name" : "Forename", 
+"buyer_last_name" : "Surname", 
 "description" : "", 
 "paid_date" : "", 
-"currency" : "PLN", 
-"lang" : "pl", 
-"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
+"currency" : "GBP", 
+"lang" : "en", 
+"exchange_currency" : "", - converted currency (conversion of the sum and tax into another currency at current exchange rates)
 "internal_note" : "", 
 "invoice_template_id" : "1", 
 "description_footer" : "", 
 "description_long" : "", 
-"from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma)
+"from_invoice_id" : "" - invoice id, on which basis the invoice was generated (useful when generating a VAT invoice from Proforma invoice)
 "positions":
    		"product_id" : "1", 
-   		"name" : "Fakturownia Start", 
-   		"additional_info" : "", - dodatkowa informacja na pozycji faktury (np. PKWiU)
-   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1' oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "kwotowo")
-   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "procentowo")
+   		"name" : "InvoiceOcean Basic", 
+   		"additional_info" : "", - additional information on invoice position 
+   		"discount_percent" : "", - percentage discount (note: in order for the discount to be calculated, you need to set field 'show_discount' to 1 and before issuing check if in Account Settings, field: "How to calculate discount" is set to 'percentage from unit gross price')
+   		"discount" : "", - amount discount (note: in order for the discount to be calculated, you need to set field 'show_discount' to 1 and before issuing check if in Account Settings, field: "How to calculate discount" is set to "amount")
    		"quantity" : "1", 
-   		"quantity_unit" : "szt", 
-   		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
+   		"quantity_unit" : "unit", 
+   		"price_net" : "59,00", - if not entered it will be calculated
    		"tax" : "23", 
-   		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
-   		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
+   		"price_gross" : "72,57", - if not entered it will be calculated
+   		"total_price_net" : "59,00", - if not entered it will be calculated
    		"total_price_gross" : "72,57"
 ```
 
-Wartości pól
+Field entries
 
-Pole: `kind`
+Field: `kind`
 ```shell
-	"vat" - faktura VAT
-	"proforma" - faktura Proforma
-	"bill" - rachunek
-	"receipt" - paragon
-	"advance" - faktura zaliczkowa
-	"final" - faktura końcowa
-	"correction" - faktura korekta
-	"vat_mp" - faktura MP 
-	"invoice_other" - inna faktura 
-	"vat_margin" - faktura marża
-	"kp" - kasa przyjmie
-	"kw" - kasa wyda
+	"vat" - VAT invoice
+	"proforma" -  Proforma invoice
+	"bill" - bill
+	"receipt" - receipt
+	"advance" - advance invoice
+	"final" - final invoice
+	"correction" - Credit Note
+	"vat_mp" - MP invoice 
+	"invoice_other" - other invoice 
+	"vat_margin" - margin invoice
+	"kp" - cash received
+	"kw" - cash disbursed
 	"estimate" - Estimate
 ```
 
-Pole: `lang`
+Field: `lang`
 ```shell
-	"pl" - faktura w języku polskim
-	"en" - język angielski
-	"de" - język niemiecki
-	"fr" - język francuski
-	"pl_en" - faktura polsko/angielska
-	"pl_de" - faktura polsko/niemiecka
-	"pl_fr" - faktura polsko/francuska
+	"pl" - Polish
+	"en" - English
+	"de" - German
+	"fr" - French
+	"cz" - Czech
+	"ru" - Russian
+	"es" - Spanish
+	"it" - Italian
+	"nl" - Dutch
+	"hr" - Croatian
 ```
 
 
-Pole: `income`
+Field: `income`
 ```shell
-	"1" - fakura przychodwa
-	"0" - faktura kosztowa
+	"1" - income invoice
+	"0" - cost invoice
 ```
 
-Pole: `payment_type`
+Field: `payment_type`
 ```shell
-	"transfer" - przelew
-	"card" - karta płatnicza
-	"cash" -  gotówka
-	"dowolny_inny_wpis_tekstowy" 
+	"transfer" - transfer
+	"card" - card
+	"cash" -  cash
+	"any_other_text_entry" 
 ```
 
-Pole: `status`
+Field: `status`
 ```shell
-	"issued" - wystawiona
-	"sent" - wysłana
-	"paid" - opłacona
-	"partial" - częściowo opłacona
+	"issued" - issued
+	"sent" - sent
+	"paid" - paid
+	"partial" - partially paid
 ```
 
-Pole: `discount_kind` - rodzaj rabatu
+Field: `discount_kind` - discount kind
 ```shell
-	"percent_unit" - liczony od ceny jednostkowej
-	"percent_total" - liczony od ceny całkowitej
-	"amount" - kwotowy
+	"percent_unit" - calculated from the unit price
+	"percent_total" - calculated from the total price
+	"amount" - amount
 ```
 
 
 <a name="clients"/>
-##Klienci
+##Clients
 
-Lista klientów
+Clients list
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1"
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&page=1"
 ```
 
-Pobranie wybranego klienta po ID
+Get selected client by ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients/100.json?api_token=API_TOKEN"
 ```
 
-Dodanie klienta
+Adding clients
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/clients.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/clients.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -366,10 +369,10 @@ curl http://YOUR_DOMAIN.fakturownia.pl/clients.json
 	    }}'
 ```
 
-Aktualizacja klienta
+Client update
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/clients/111.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/clients/111.json 
 	-X PUT 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
@@ -392,28 +395,28 @@ curl http://YOUR_DOMAIN.fakturownia.pl/clients/111.json
 
 
 <a name="products"/>
-##Produkty
+##Products
 
-Produkty 
+Products 
 
-Lista produktów
+Products list
 
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
+curl "http://YOUR_DOMAIN.invoiceocean.com/products.json?api_token=API_TOKEN&page=1"
 ```
 
-Pobranie wybranego produktu po ID
+Get selected product by ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
+curl "http://YOUR_DOMAIN.invoiceocean.com/products/100.json?api_token=API_TOKEN"
 ```
 
-Dodanie produktu
+Adding products
 
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/products.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/products.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -425,10 +428,10 @@ curl http://YOUR_DOMAIN.fakturownia.pl/products.json
 	    }}'
 ```
 
-Aktualizacja produktu
+Product update
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/products/333.json 
+curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json 
 	-X PUT
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
@@ -441,10 +444,10 @@ curl http://YOUR_DOMAIN.fakturownia.pl/products/333.json
 ```
 
 <a name="codes"/>
-##Przykłady w PHP i Ruby
+##Examples in PHP and Ruby
 
 <https://github.com/radgost/fakturownia-api/blob/master/example1.php/>
 
 <https://github.com/radgost/fakturownia-api/blob/master/example1.rb/>
 
-Ruby Gem do integracji z Fakturownia.pl: <https://github.com/kkempin/fakturownia/>
+Ruby Gem for InvoiceOcean.com integration: <https://github.com/kkempin/fakturownia/>
