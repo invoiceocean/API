@@ -79,60 +79,60 @@ Other PDF options:
 Adding a new invoice
 
 ```shell
-curl https://YOUR_DOMAIN.invoiceocean.com/invoices.json 
-  	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{
-	  	"api_token": "API_TOKEN",
-	  	"invoice": {
-			"kind":"vat", 
-			"number": null, 
-			"sell_date": "2013-01-16", 
-			"issue_date": "2013-01-16", 
-			"payment_to": "2013-01-23",
-			"seller_name": "Wystawca Sp. z o.o.", 
-			"seller_tax_no": "5252445767", 
-			"buyer_name": "Klient1 Sp. z o.o.",
-			"buyer_tax_no": "5252445767",
-			"positions":[
-				{"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
-				{"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
-			]		
-		}
-	}'
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "kind":"vat", 
+            "number": null, 
+            "sell_date": "2013-01-16", 
+            "issue_date": "2013-01-16", 
+            "payment_to": "2013-01-23",
+            "seller_name": "Wystawca Sp. z o.o.", 
+            "seller_tax_no": "5252445767", 
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_tax_no": "5252445767",
+            "positions":[
+                {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
+            ]       
+        }
+    }'
 ```
 
 Adding a new invoice - the minimal version (only fields required), when we have product, buyer and seller ID we do not need to provide full details.
 VAT Invoice with current date and 5 day due date will be issued.
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"invoice": {
-			"payment_to_kind": 5,
-			"department_id": 1, 
-			"client_id": 1,
-			"positions":[
-				{"product_id": 1, "quantity":2}
-			]
-	    }}'
+curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "payment_to_kind": 5,
+            "department_id": 1, 
+            "client_id": 1,
+            "positions":[
+                {"product_id": 1, "quantity":2}
+            ]
+        }}'
 ```	   
 
 Invoice update
 
 ```shell
-curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json 
-	-X PUT 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{
-		"api_token": "API_TOKEN",
-		"invoice": {
-			"buyer_name": "New client name Ltd."
-		}
-	}'
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "buyer_name": "New client name Ltd."
+        }
+    }'
 ```
 
 <a name="view_url"/>
@@ -182,9 +182,9 @@ Flow Portal Example which generates a proforma invoice for the client, sends it 
 Example - adding a new invoice - the minimal version (only fields required), when we have product, buyer and seller ID we do not need to provide full details. Field department_id determines the company (or department) which issues the invoice (it can be obtained by clicking on the company in Settings> Data Company)
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json 
-    -H 'Accept: application/json'  
-    -H 'Content-Type: application/json'  
+curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
     -d '{"api_token": "API_TOKEN",
         "invoice": {
             "payment_to_kind": 5,
@@ -349,48 +349,48 @@ curl "http://YOUR_DOMAIN.invoiceocean.com/clients/100.json?api_token=API_TOKEN"
 Adding clients
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/clients.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"client": {
-			"name": "Klient1",
-			"tax_no": "5252445767",
-			"bank" : "bank1",
-			"bank_account" : "bank_account1",
-			"city" : "city1",
-			"country" : "",
-			"email" : "bank1",
-			"person" : "person1",
-			"post_code" : "post-code1",
-			"phone" : "phone1",
-			"street" : "street1",
-			"street_no" : "street-no1"
-	    }}'
+curl http://YOUR_DOMAIN.invoiceocean.com/clients.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "client": {
+            "name": "Klient1",
+            "tax_no": "5252445767",
+            "bank" : "bank1",
+            "bank_account" : "bank_account1",
+            "city" : "city1",
+            "country" : "",
+            "email" : "bank1",
+            "person" : "person1",
+            "post_code" : "post-code1",
+            "phone" : "phone1",
+            "street" : "street1",
+            "street_no" : "street-no1"
+        }}'
 ```
 
 Client update
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/clients/111.json 
-	-X PUT 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"client": {
-			"name": "Klient2",
-			"tax_no": "52524457672",
-			"bank" : "bank2",
-			"bank_account" : "bank_account2",
-			"city" : "city2",
-			"country" : "PL",
-			"email" : "bank2",
-			"person" : "person2",
-			"post_code" : "post-code2",
-			"phone" : "phone2",
-			"street" : "street2",
-			"street_no" : "street-no2"
-	    }}'
+curl http://YOUR_DOMAIN.invoiceocean.com/clients/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "client": {
+            "name": "Klient2",
+            "tax_no": "52524457672",
+            "bank" : "bank2",
+            "bank_account" : "bank_account2",
+            "city" : "city2",
+            "country" : "PL",
+            "email" : "bank2",
+            "person" : "person2",
+            "post_code" : "post-code2",
+            "phone" : "phone2",
+            "street" : "street2",
+            "street_no" : "street-no2"
+        }}'
 ```
 
 
@@ -416,31 +416,31 @@ Adding products
 
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/products.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"product": {
-			"name": "PoroductAA",
-			"code": "A001",
-			"price_net": "100",
-			"tax": "23"
-	    }}'
+curl http://YOUR_DOMAIN.invoiceocean.com/products.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "PoroductAA",
+            "code": "A001",
+            "price_net": "100",
+            "tax": "23"
+        }}'
 ```
 
 Product update
 
 ```shell
-curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json 
-	-X PUT
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"product": {
-			"name": "PoroductAA2",
-			"code": "A0012",
-			"price_net": "102"
-	    }}'
+curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
+    -X PUT \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "PoroductAA2",
+            "code": "A0012",
+            "price_net": "102"
+        }}'
 ```
 
 <a name="codes"/>
