@@ -169,6 +169,12 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
     }'
 ```
 
+Invoice status change
+
+```shell
+curl "https://YOUR_DOMAIN.invoiceocean.com/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
+```
+
 <a name="view_url"/>
 ##Link to invoice preview and PDF download
 
