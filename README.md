@@ -17,7 +17,9 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 	+ Sending invoices by email to a client
 	+ Adding a new invoice
 	+ Adding a new invoice (by client, product, seller ID)
+	+ Adding a new correction invoice
 	+ Invoice update
+	+ Changing invoice status
 + [Link to invoice preview and PDF download](#view_url)  
 + [Examples of use - purchase of training](#use_case1)  
 + [Invoices - specification](#invoices)
@@ -169,7 +171,7 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
     }'
 ```
 
-Invoice status change
+Changing invoice status
 
 ```shell
 curl "https://YOUR_DOMAIN.invoiceocean.com/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
