@@ -123,7 +123,7 @@ curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
 Adding a new correction invoice
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
     -d '{"api_token": "API_TOKEN",
