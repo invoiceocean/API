@@ -524,23 +524,23 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
 * **provider_title** - Title of the payment provider
 * **quantity** - Quantity of the item that was paid for
 * **street** - Street from the sender's address
-* **kind** - Rodzaj płatności (skąd pochodzi). W przypadku płatności tworzonych przez API musi mieć wartość "api".
+* **kind** - payment kind (where it comes from). In case of API it should be set to "api".
 
 ### Listing all payments
 
 #### XML
-    curl "http://robert-kusznier.vosfactures.dev/payments.xml?api_token=8xCaqxnBtQ7c41YPA6za/robert-kusznier"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.xml?api_token=API_TOKEN"
     
 #### JSON
-    curl "http://robert-kusznier.vosfactures.dev/payments.json?api_token=8xCaqxnBtQ7c41YPA6za/robert-kusznier"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.json?api_token=API_TOKEN"
 
 ### Select payment using ID
 
 #### XML
-    curl "http://robert-kusznier.vosfactures.dev/payments/100.xml?api_token=8xCaqxnBtQ7c41YPA6za/robert-kusznier"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments/100.xml?api_token=API_TOKEN"
     
 #### JSON
-    curl "http://robert-kusznier.vosfactures.dev/payment/100.json?api_token=8xCaqxnBtQ7c41YPA6za/robert-kusznier"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payment/100.json?api_token=API_TOKEN"
     
 ### Adding new payment
 
