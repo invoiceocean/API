@@ -25,6 +25,7 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 + [Invoices - specification](#invoices)
 + [Clients](#clients)
 + [Products](#products)
++ [Payments](#payments)
 + [Examples in PHP and Ruby](#codes)  
 
 
@@ -483,6 +484,128 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
             "code": "A0012",
             "price_net": "102"
         }}'
+```
+
+<a name="payments"/>
+##Payments
+
+###Fields description
+* **city** - City from the sender's address
+* **client_id** - ID of the client who makes the payment
+* **comment** - Comment for the client
+* **country** - Country from the sender's address
+* **currency** - Currency of the payment
+* **department_id** - ID of the department that the client belongs to
+* **description** - Payment description
+* **email** - Email of the sender
+* **first_name** - First name of the sender
+* **generate_invoice** - If generate an invoice that would match the payment
+* **invoice_city** - City of the generated invoice's address
+* **invoice_comment** - Comment for the generated invoice
+* **invoice_country** - Country of the generated invoice's address
+* **invoice_id** - ID of the invoice being paid for
+* **invoice_name** - Name of the client on the generated invoice
+* **invoice_post_code** - Post code of the generated invoice's address
+* **nvoice_street** - Street of the generated invoice's address
+* **invoice_tax_no** - Tax no. on the generated invoice
+* **last_name** - Last name of the sender
+* **name** - Name of the sender
+* **oid** - ID of the order that is paid for
+* **paid** - If the payment is already paid <Boolean>
+* **paid_date** - Date when the payment was made
+* **phone** - Phone of the sender
+* **post_code** - Post code from the sender's address
+* **price** - Price of the product that was paid for
+* **product_id** - ID of the product that was paid for
+* **promocode** - Promocode that was used with the payment
+* **provider** - Name of the payment provider (for online payments)
+* **provider_response** - Response of the payment provider
+* **provider_status** - Status of the payment according to the provider
+* **provider_title** - Title of the payment provider
+* **quantity** - Quantity of the item that was paid for
+* **street** - Street from the sender's address
+* **kind** - payment kind (where it comes from). In case of API it should be set to "api".
+
+### Listing all payments
+
+#### XML
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.xml?api_token=API_TOKEN"
+    
+#### JSON
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.json?api_token=API_TOKEN"
+
+### Select payment using ID
+
+#### XML
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payments/100.xml?api_token=API_TOKEN"
+    
+#### JSON
+    curl "http://YOUR_DOMAIN.invoiceocean.com/payment/100.json?api_token=API_TOKEN"
+    
+### Adding new payment
+
+#### Minimal JSON (recommended)
+```shell
+curl #{domain}/payments.json 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{
+		"api_token": "#{api_token}",
+		"payment": {	
+			"name":"Payment 001",
+			"price": 100.05,
+			"invoice_id": null,
+			"paid":true,
+			"kind": "api"
+	     	}
+	     }'
+```
+
+#### Full JSON (recommended)
+```shell
+curl #{domain}/payments.json 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{
+		"api_token": "#{api_token}",
+		"payment": {	
+			"city": null,
+			"client_id":null,
+			"comment":null,
+			"country":null,
+			"currency":"PLN",
+			"department_id":null,
+			"description":"abonament roczny",
+			"email":"email@email.pl",
+			"first_name":"Jan",
+			"generate_invoice":true,			
+			"invoice_city":"Warszawa",
+			"invoice_comment":"",
+			"invoice_country":null,
+			"invoice_id":null,
+			"invoice_name":"Company name",
+			"invoice_post_code":"00-112",
+			"invoice_street":"street 52",
+			"invoice_tax_no":"5252445767",
+			"last_name":"Kowalski",
+			"name":"Plantnosc za produkt1",
+			"oid":"",
+			"paid":true,
+			"paid_date":null,
+			"phone":null,
+			"post_code":null,
+			"price":"100.00",
+			"product_id":1,
+			"promocode":"",
+			"provider":"transfer",
+			"provider_response":null,
+			"provider_status":null,
+			"provider_title":null,
+			"quantity":1,
+			"street":null,
+			"kind": "api"
+		}
+	     }'
 ```
 
 <a name="codes"/>
