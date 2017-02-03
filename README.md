@@ -41,7 +41,8 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 <a name="examples"/>
 ##Examples of calling
 
-Downloading a list of invoices from current month: <a name="1"/>
+<a name="1"/>
+Downloading a list of invoices from current month: 
 
 ```shell
 curl https://yourdomain.invoiceocean.com/invoices.json?period=this_month&api_token=API_TOKEN
@@ -49,25 +50,29 @@ curl https://yourdomain.invoiceocean.com/invoices.json?period=this_month&api_tok
 
 <b>NOTE</b>: additional parameters can be forwarded to calls, e.g. `page=`, `period=` etc.
 
-Specific client's invoices: <a name="2"/>
+<a name="2"/>
+Specific client's invoices: 
 
 ```shell
 curl https://yourdomain.invoiceocean.com/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
-Downloading invoices by ID: <a name="3"/>
+<a name="3"/>
+Downloading invoices by ID: 
 
 ```shell
 curl https://yourdomain.invoiceocean.com/invoices/100.json?api_token=API_TOKEN
 ```
 
-Downloading as PDF: <a name="4"/>
+<a name="4"/>
+Downloading as PDF: 
 
 ```shell
 curl https://yourdomain.invoiceocean.com/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-Sending invoices by email to a client: <a name="5"/>
+<a name="5"/>
+Sending invoices by email to a client: 
 
 ```shell
 curl -X POST https://yourdomain.invoiceocean.com/invoices/100/send_by_email.json?api_token=API_TOKEN
@@ -79,8 +84,8 @@ Other PDF options:
 * print_option=original_and_copy - Original and copy
 * print_option=duplicate Duplicate
 
-
-Adding a new invoice: <a name="6"/>
+<a name="6"/>
+Adding a new invoice: 
 
 ```shell
 curl https://YOUR_DOMAIN.invoiceocean.com/invoices.json \
@@ -106,8 +111,9 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices.json \
     }'
 ```
 
+<a name="7"/>
 Adding a new invoice - the minimal version (only fields required), when we have product, buyer and seller ID we do not need to provide full details.
-VAT Invoice with current date and 5 day due date will be issued: <a name="7"/>
+VAT Invoice with current date and 5 day due date will be issued: 
 
 ```shell
 curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
@@ -124,7 +130,8 @@ curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
         }}'
 ```	   
 
-Adding a new correction invoice: <a name="8"/>
+<a name="8"/>
+Adding a new correction invoice: 
 
 ```shell
 curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
@@ -158,7 +165,8 @@ curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
         }}'
 ```
 
-Invoice update: <a name="9"/>
+<a name="9"/>
+Invoice update: 
 
 ```shell
 curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
@@ -173,19 +181,22 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
     }'
 ```
 
-Changing invoice status: <a name="10"/>
+<a name="10"/>
+Changing invoice status: 
 
 ```shell
 curl "https://YOUR_DOMAIN.invoiceocean.com/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
 ```
 
-Downloading a definition list of recurring invoices: <a name="11"/>
+<a name="11"/>
+Downloading a definition list of recurring invoices: 
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
 ```
 
-Adding a new definition of recurring invoice: <a name="12"/>
+<a name="12"/>
+Adding a new definition of recurring invoice: 
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
@@ -204,7 +215,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
         }}'
 ```
 
-Actualizing a definition of recurring invoice: <a name="13"/>
+<a name="13"/>
+Actualizing a definition of recurring invoice: 
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
@@ -219,7 +231,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
     }'
 ```
 
-Deleting an invoice: <a name="14"/>
+<a name="14"/>
+Deleting an invoice: 
 
 ```shell
 curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
