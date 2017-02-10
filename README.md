@@ -28,7 +28,17 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 + [Examples of use - purchase of training](#use_case1)  
 + [Invoices - specification](#invoices)
 + [Clients](#clients)
+	+ [Clients list](#c1)
+	+ [Get selected client by ID](#c2)
+	+ [Adding clients](#c3)
+	+ [Client update](#c4)
 + [Products](#products)
+	+ [Products list](#p1)
+	+ [Products list with storage quantities for a specific magazine](#p2)
+	+ [Get selected product by ID](#p3)
+	+ [Get selected product by ID with storage quantity for a specific magazine](#p4)
+	+ [Adding products](#p5)
+	+ [Product update](#p6)
 + [Payments](#payments)
 + [Examples in PHP and Ruby](#codes)  
 
@@ -437,18 +447,21 @@ Field: `discount_kind` - discount kind
 <a name="clients"/>
 ##Clients
 
+<a name="c1"/>
 Clients list
 
 ```shell
 curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&page=1"
 ```
 
+<a name="c2"/>
 Get selected client by ID
 
 ```shell
 curl "http://YOUR_DOMAIN.invoiceocean.com/clients/100.json?api_token=API_TOKEN"
 ```
 
+<a name="c3"/>
 Adding clients
 
 ```shell
@@ -472,6 +485,7 @@ curl http://YOUR_DOMAIN.invoiceocean.com/clients.json \
         }}'
 ```
 
+<a name="c4"/>
 Client update
 
 ```shell
@@ -500,23 +514,36 @@ curl http://YOUR_DOMAIN.invoiceocean.com/clients/111.json \
 <a name="products"/>
 ##Products
 
-Products 
-
+<a name="p1"/>
 Products list
-
 
 ```shell
 curl "http://YOUR_DOMAIN.invoiceocean.com/products.json?api_token=API_TOKEN&page=1"
 ```
 
+<a name="p2"/>
+Products list with storage quantities for a specific magazine
+
+```shell
+curl "http://YOUR_DOMAIN.invoiceocean.com/products.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID&page=1"
+```
+
+<a name="p3"/>
 Get selected product by ID
 
 ```shell
 curl "http://YOUR_DOMAIN.invoiceocean.com/products/100.json?api_token=API_TOKEN"
 ```
 
-Adding products
+<a name="p4"/>
+Get selected product by ID with storage quantity for a specific magazine
 
+```shell
+curl "http://YOUR_DOMAIN.invoiceocean.com/products/100.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID"
+```
+
+<a name="p5"/>
+Adding products
 
 ```shell
 curl http://YOUR_DOMAIN.invoiceocean.com/products.json \
@@ -531,6 +558,7 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products.json \
         }}'
 ```
 
+<a name="p6"/>
 Product update
 
 ```shell
