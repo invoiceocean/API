@@ -333,7 +333,7 @@ Invoice fields
 "seller_fax" : "", 
 "seller_phone" : "", 
 "client_id" : "-1" - buyer id (if -1 then client will be created in the system)
-"buyer_name" : "Client name - buyer
+"buyer_name" : "Client name" - buyer
 "buyer_tax_no" : "525-244-57-67", 
 "disable_tax_no_validation" : "", 
 "buyer_post_code" : "30-314", 
