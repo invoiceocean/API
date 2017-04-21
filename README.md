@@ -363,8 +363,12 @@ Invoice fields
 "internal_note" : "", 
 "invoice_template_id" : "1", 
 "description_footer" : "", 
-"description_long" : "", 
-"from_invoice_id" : "" - invoice id, on which basis the invoice was generated (useful when generating a VAT invoice from Proforma invoice)
+"description_long" : "",
+"invoice_id" : "" - id of connected document, for example id of base document for recurring invoice,
+"from_invoice_id" : "" - invoice id, on which basis the invoice was generated (useful when generating a VAT invoice from Proforma invoice),
+"delivery_date" : "" - receipt date of the document (only in expenses),
+"buyer_company" : "1" - is buyer a company or private person,
+"additional_invoice_field" : "" - value of the additional invoice field, Settings > Account settings > Configuration > Invoices and documents > Additional invoice field, 
 "positions":
    		"product_id" : "1", 
    		"name" : "InvoiceOcean Basic", 
@@ -378,6 +382,12 @@ Invoice fields
    		"price_gross" : "72,57", - if not entered it will be calculated
    		"total_price_net" : "59,00", - if not entered it will be calculated
    		"total_price_gross" : "72,57"
+"calculating_strategy" => 
+{
+  "position": "default" or "keep_gross" - calculation method for invoice positions 
+  "sum": "sum" or "keep_gross" or "keep_net" - invoice positions summation method
+  "invoice_form_price_kind": "net" or "gross" - unit price visible on the invoice
+}
 ```
 
 Field entries
