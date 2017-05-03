@@ -44,12 +44,14 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 
 
 <a name="token"/>
-##API token
+
+## API token
 
 `API_TOKEN` token has to be downloaded from application settings ("Settings -> Account settings -> Integration -> API Authorization Code")
 
 <a name="examples"/>
-##Examples of calling
+
+## Examples of calling
 
 <a name="1"/>
 Downloading a list of invoices from current month: 
@@ -249,7 +251,8 @@ curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_t
 ```
 
 <a name="view_url"/>
-##Link to invoice preview and PDF download
+
+## Link to invoice preview and PDF download
 
 After downloading invoice data, e.g. by:
 
@@ -268,7 +271,8 @@ pdf: `http://yourdomain.invoiceocean.com/invoice/{{token}}.pdf`
 E.g. for token equal: `HBO3Npx2OzSW79RQL7XV2` public PDF will be at `http://yourdomain.invoiceocean.com/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
 <a name="use_case1"/>
-##Examples of using PHP - purchase of training
+
+## Examples of using PHP - purchase of training
 
 `TODO` 
 
@@ -283,7 +287,8 @@ Flow Portal Example which generates a proforma invoice for the client, sends it 
 
 
 <a name="invoices"/>
-##Invoices
+
+## Invoices
 
 
 * `GET /invoices/1.json` downloading invoice
@@ -455,7 +460,8 @@ Field: `discount_kind` - discount kind
 
 
 <a name="clients"/>
-##Clients
+
+## Clients
 
 <a name="c1"/>
 Clients list
@@ -522,7 +528,8 @@ curl http://YOUR_DOMAIN.invoiceocean.com/clients/111.json \
 
 
 <a name="products"/>
-##Products
+
+## Products
 
 <a name="p1"/>
 Products list
@@ -585,9 +592,10 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
 ```
 
 <a name="payments"/>
-##Payments
 
-###Fields description
+## Payments
+
+### Fields description
 * **city** - City from the sender's address
 * **client_id** - ID of the client who makes the payment
 * **comment** - Comment for the client
@@ -707,7 +715,8 @@ curl #{domain}/payments.json
 ```
 
 <a name="codes"/>
-##Examples in PHP and Ruby
+
+## Examples in PHP and Ruby
 
 <https://github.com/radgost/fakturownia-api/blob/master/example1.php/>
 
