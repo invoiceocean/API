@@ -587,9 +587,12 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
         "product": {
             "name": "PoroductAA2",
             "code": "A0012",
-            "price_net": "102"
+            "price_gross": "102",
+	    "tax": "23"
         }}'
 ```
+**Warning:** Net price is calculated from the gross price and tax values, and cannot be changed directly through the API.
+
 
 <a name="payments"/>
 
