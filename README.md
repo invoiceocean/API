@@ -193,6 +193,21 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
     }'
 ```
 
+Invoice position update - invoice position id must be specified:
+
+```shell
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "positions": [{"id":32649087, "name":"test"}]
+        }
+    }'
+```
+
 <a name="10"/>
 Changing invoice status: 
 
