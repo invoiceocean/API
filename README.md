@@ -19,6 +19,8 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 	+ [Adding a new invoice (by client, product, seller ID)](#7)
 	+ [Adding a new correction invoice](#8)
 	+ [Invoice update](#9)
+	+ [Invoice position update](#f9b)
+	+ [Deleting an invoice position](#f9c)
 	+ [Changing invoice status](#10)
 	+ [Downloading a definition list of recurring invoices](#11)
 	+ [Adding a new definition of recurring invoice](#12)
@@ -193,6 +195,7 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
     }'
 ```
 
+<a name="9b"/>
 Invoice position update - invoice position id must be specified:
 
 ```shell
@@ -204,6 +207,22 @@ curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
         "api_token": "API_TOKEN",
         "invoice": {
             "positions": [{"id":32649087, "name":"test"}]
+        }
+    }'
+```
+
+<a name="9c"/>
+Invoice position deletion - invoice position id must be specified:
+
+```shell
+curl https://YOUR_DOMAIN.invoiceocean.com/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "positions": [{"id":32649087, "_destroy":1}]
         }
     }'
 ```
