@@ -9,6 +9,7 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 
 ## Table of contents
 + [API Token](#token)  
++ [Additional parameters for downloading lists of records](#list_params)
 + [Invoices - examples of calling](#examples)  
 	+ [Downloading a list of invoices from current month](#1)
 	+ [Specific client's invoices](#2)
@@ -51,6 +52,16 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 
 `API_TOKEN` token has to be downloaded from application settings ("Settings -> Account settings -> Integration -> API Authorization Code")
 
+<a name="list_params"/>
+
+## Additional parameters for downloading lists of records
+
+Additional parameters can be forwarded to calls (same as in application), e.g. `page=`, `period=` etc.
+
+`page=` parameter allows to iteration over paginated records.
+By default it is '1' what gives first N records, when N is the limit of the records in response.
+In order to download next N records, parameter `page=2` should be forwarded to call and so forth.
+
 <a name="examples"/>
 
 ## Examples of calling
@@ -68,7 +79,7 @@ curl https://yourdomain.invoiceocean.com/invoices.json?period=this_month&api_tok
 Specific client's invoices: 
 
 ```shell
-curl https://yourdomain.invoiceocean.com/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
+curl https://yourdomain.invoiceocean.com/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN&page=1
 ```
 
 <a name="3"/>
