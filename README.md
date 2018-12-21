@@ -62,6 +62,17 @@ Additional parameters can be forwarded to calls (same as in application), e.g. `
 By default it is '1' what gives first N records, when N is the limit of the records in response.
 In order to download next N records, parameter `page=2` should be forwarded to call and so forth.
 
+`period=` parameter allows to select records from given period.
+Possible values:
+- last_12_months
+- this_month
+- last_30_days
+- last_month
+- this_year
+- last_year
+- all
+- more (in that case, additional parameters date_from (e.g "2018-12-16") and date_to ("2018-12-21") should be passed)
+
 <a name="examples"/>
 
 ## Examples of calling
