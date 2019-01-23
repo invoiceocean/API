@@ -761,4 +761,4 @@ curl #{domain}/payments.json
 
 Ruby Gem for InvoiceOcean.com integration: <https://github.com/kkempin/fakturownia/>
 
-PHP Composer package for InvoiceOcea.com Intergation: <https://packagist.org/packages/humancopy/invoice-ocean>
+PHP Composer package for InvoiceOcean.com Intergation: <https://packagist.org/packages/humancopy/invoice-ocean>
