@@ -43,6 +43,11 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 	+ [Adding products](#p5)
 	+ [Product update](#p6)
 + [Payments](#payments)
++ [Departments](#departments)
+	+ [Departments list](#dep1)
+	+ [Get selected department by ID](#dep2)
+	+ [Create new department](#dep3)
+	+ [Delete selected department by ID](#dep4)
 + [Examples in PHP and Ruby](#codes)  
 
 
@@ -774,6 +779,52 @@ curl #{domain}/payments.json
 		}
 	     }'
 ```
+
+
+<a name="departments"/>
+
+## Departments 
+
+<a name="dep1"/>  
+Departments list
+
+```shell
+curl "http://YOUR_DOMAIN.invoiceocean.com/departments.json?api_token=API_TOKEN"
+```
+
+<a name="dep2"/>
+
+Get selected department by ID
+
+```shell
+curl "http://YOUR_DOMAIN.invoiceocean.com/departments/100.json?api_token=API_TOKEN"
+```
+
+<a name="dep3"/>
+
+Create new department
+
+```shell
+curl https://YOUR_DOMAIN.invoiceocean.com/departments.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"department": {
+					"name":"my_warehouse", 
+					"shortcut": "short_name",
+					"tax_no": "-"
+				}}'
+```
+
+<a name="dep4"/>
+
+Delete selected department by ID
+	
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.invoiceocean.com/departments/100.json?api_token=API_TOKEN"
+```
+
 
 <a name="codes"/>
 
