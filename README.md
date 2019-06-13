@@ -32,6 +32,7 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 + [Invoices - specification](#invoices)
 + [Clients](#clients)
 	+ [Clients list](#c1)
+	+ [Searching clients by name, e-mail, shortcut or tax no.](#c1b)
 	+ [Get selected client by ID](#c2)
 	+ [Adding clients](#c3)
 	+ [Client update](#c4)
@@ -531,6 +532,16 @@ Clients list
 
 ```shell
 curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&page=1"
+```
+
+<a name="c1b"/>
+Searching clients by name, e-mail, shortcut or tax no.
+
+```shell
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&name=CLIENT_NAME"
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&email=EMAIL_ADDRESS"
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&shortcut=SHORT_NAME"
+curl "http://YOUR_DOMAIN.invoiceocean.com/clients.json?api_token=API_TOKEN&tax_no=TAX_NO"
 ```
 
 <a name="c2"/>
