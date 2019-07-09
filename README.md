@@ -425,7 +425,8 @@ Invoice fields
 "description" : "", 
 "paid_date" : "", 
 "currency" : "GBP", 
-"lang" : "en", 
+"lang" : "en",
+"use_moss" : "0", - whether or not to use MOSS
 "exchange_currency" : "", - converted currency (conversion of the sum and tax into another currency), e.g. "USD"
 "exchange_kind" : "", - source of the exchange rate for currency conversion ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - custom exchange rate for currency conversion (used only if exchange_kind parameter is set to "own")
