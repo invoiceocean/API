@@ -713,29 +713,29 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
 ### Listing all payments
 
 #### XML
-    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.xml?api_token=API_TOKEN"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/banking/payments.xml?api_token=API_TOKEN"
     
 #### JSON
-    curl "http://YOUR_DOMAIN.invoiceocean.com/payments.json?api_token=API_TOKEN"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/banking/payments.json?api_token=API_TOKEN"
 
 ### Select payment using ID
 
 #### XML
-    curl "http://YOUR_DOMAIN.invoiceocean.com/payments/100.xml?api_token=API_TOKEN"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/banking/payments/100.xml?api_token=API_TOKEN"
     
 #### JSON
-    curl "http://YOUR_DOMAIN.invoiceocean.com/payment/100.json?api_token=API_TOKEN"
+    curl "http://YOUR_DOMAIN.invoiceocean.com/banking/payment/100.json?api_token=API_TOKEN"
     
 ### Adding new payment
 
 #### Minimal JSON (recommended)
 ```shell
-curl #{domain}/payments.json 
+curl #{domain}/banking/payments.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
 		"api_token": "#{api_token}",
-		"payment": {	
+		"banking_payment": {	
 			"name":"Payment 001",
 			"price": 100.05,
 			"invoice_id": null,
@@ -747,12 +747,12 @@ curl #{domain}/payments.json
 
 #### Full JSON (recommended)
 ```shell
-curl #{domain}/payments.json 
+curl #{domain}/banking/payments.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
 		"api_token": "#{api_token}",
-		"payment": {	
+		"banking_payment": {	
 			"city": null,
 			"client_id":null,
 			"comment":null,
