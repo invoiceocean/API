@@ -1,7 +1,7 @@
 # InvoiceOcean API
 
 
-Description on how to integrate own apllication or service with <http://invoiceocean.com/> system
+Description on how to integrate own apllication or service with <https://invoiceocean.com/> system
 
 
 
