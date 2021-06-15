@@ -43,6 +43,11 @@ Thanks to API you can issue invoices/bills/receipts from other systems and manag
 	+ [Get selected product by ID with storage quantity for a specific magazine](#p4)
 	+ [Adding products](#p5)
 	+ [Product update](#p6)
++ [Price lists](#price_lists)
+	+ [List of price lists](#pricel1)
+	+ [Adding price list](#pricel2)
+	+ [Price list update](#pricel3)
+	+ [Deleting price list](#pricel4)
 + [Payments](#payments)
 + [Departments](#departments)
 	+ [Departments list](#dep1)
@@ -668,6 +673,72 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
 ```
 **Warning:** Net price is calculated from the gross price and tax values, and cannot be changed directly through the API.
 
+<a name="price_lists"/>
+
+## Cenniki
+
+<a name="warehouse_documents"/>
+
+<a name="pricel1"/>
+List of price lists
+
+```shell
+curl "https://YOUR_DOMAIN.invoiceocean.com/price_lists.json?api_token=API_TOKEN"
+```
+you can pass the same parameters that are provided in the application (on the invoice list page)
+
+<a name="pricel2"/>
+Adding price list
+
+```shell
+curl https://YOUR_DOMAIN.invoiceocean.com/price_lists.json
+                -H 'Accept: application/json'
+                -H 'Content-Type: application/json'
+                -d '{
+                "api_token": "API_TOKEN",
+                "price_list": {
+                    "name": "Price list name",
+		    "description": "Description",
+		    "currency": "EUR",
+                    "price_list_positions_attributes": {
+		    	"0": {
+				"priceable_id": "Product ID",
+				"priceable_name": "Product name",
+				"priceable_type": "Product",
+				"use_percentage": "0",
+				"percentage": "",
+				"price_net": "111.0",
+				"price_gross": "136.53",
+				"use_tax": "1",
+				"tax": "23"
+			}
+		    }
+                }}'
+```
+
+<a name="pricel3"/>
+Price list update
+
+```shell
+curl https://YOUR_DOMAIN.invoiceocean.com/price_lists/100.json
+		-X PUT
+                -H 'Accept: application/json'
+                -H 'Content-Type: application/json'
+                -d '{
+                "api_token": "API_TOKEN",
+                "price_list": {
+                    "name": "Price list name",
+		    "description": "Description",
+		    "currency": "EUR",
+                }}'
+```
+
+<a name="pricel4"/>
+Deleting price list
+
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.invoiceocean.com/price_lists/100.json?api_token=API_TOKEN"
+```
 
 <a name="payments"/>
 
