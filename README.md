@@ -675,7 +675,7 @@ curl http://YOUR_DOMAIN.invoiceocean.com/products/333.json \
 
 <a name="price_lists"/>
 
-## Cenniki
+## Price lists
 
 <a name="warehouse_documents"/>
 
