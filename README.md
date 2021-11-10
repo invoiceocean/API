@@ -918,3 +918,5 @@ curl -X DELETE "https://YOUR_DOMAIN.invoiceocean.com/departments/100.json?api_to
 <https://github.com/radgost/fakturownia-api/blob/master/example1.rb/>
 
 Ruby Gem for InvoiceOcean.com integration: <https://github.com/kkempin/fakturownia/>
+
+PHP Composer package for InvoiceOcean.com Intergation: <https://packagist.org/packages/humancopy/invoice-ocean>
