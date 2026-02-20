@@ -187,6 +187,7 @@ curl http://YOUR_DOMAIN.invoiceocean.com/invoices.json \
     -d '{"api_token": "API_TOKEN",
         "invoice": {
             "kind": "correction",
+			"correction_reason": "Wrong quantity",
             "from_invoice_id": "2432393,
             "client_id": 1,
             "positions":[
